@@ -481,7 +481,7 @@ class ReplyByEmailAPI {
                         if($Comment->InsertUserID!=$FromUserID){
                             $this->Denied();
                         }else{
-                            $Fields = array('DiscussionID'=>$Comment->DiscussionID,'Body'=>GetValueR('content.text/html',$Notification,GetValueR('content.text/plain',$Notification)));
+                            $Fields = array('DiscussionID'=>$Comment->DiscussionID,'Body'=>$this->FormatContent($Notification));
                             $CommentModel->Save($Fields);
                         }
                         $ContentID = $Comment->DiscussionID;
@@ -495,7 +495,7 @@ class ReplyByEmailAPI {
                             $this->Denied();
                         }else{
                             $CommentModel = new CommentModel();
-                            $Fields = array('DiscussionID'=>$Discussion->DiscussionID,'Body'=>GetValueR('content.text/html',$Notification,GetValueR('content.text/plain',$Notification)));
+                            $Fields = array('DiscussionID'=>$Discussion->DiscussionID,'Body'=>$this->FormatContent($Notification));
                             $CommentModel->Save($Fields);
                         }
                         break;
@@ -507,7 +507,7 @@ class ReplyByEmailAPI {
                         }else{
                             $Activity = array(
                                 'ActivityID' => $RecordID,
-                                'Body' => GetValueR('content.text/html',$Notification,GetValueR('content.text/plain',$Notification)),
+                                'Body' => $this->FormatContent($Notification),
                                 'Format' => 'Text'
                             );
                             
@@ -523,7 +523,7 @@ class ReplyByEmailAPI {
                             $this->Denied();
                         }else{
                             $ConversationMessageModel = new ConversationMessageModel();
-                            $Message = array('ConversationID'=>$RecordID,'Body'=>GetValueR('content.text/html',$Notification,GetValueR('content.text/plain',$Notification)));
+                            $Message = array('ConversationID'=>$RecordID,'Body'=>$this->FormatContent($Notification));
                             $ConversationMessageModel->Save($Message);
                             $ContentID = $RecordID;
                         }
@@ -544,6 +544,31 @@ class ReplyByEmailAPI {
             unset($Notification['content']);
             
             $ReplyPushModel->LogTransaction($Notification);
+        }
+    }
+    
+    /**
+     * @@ FormatContent @@
+     * 
+     * Pre- formats html and text content
+     * 
+     * @param array[string]mixed $Notification
+     * 
+     * @return string
+     */
+    
+    public function FormatContent($Notification){
+        $Html = GetValueR('content.text/html',$Notification);
+        if($Html){
+            return trim(
+                str_replace(
+                    "\n",
+                    '',
+                    $Html
+                )
+            );
+        }else{
+            return trim(GetValueR('content.text/plain',$Notification));
         }
     }
     
