@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) exit();
 
-$Definition['ReplyByEmail.SigText']  = "{Tag}\n\n\n***** reply service *****\n\nYou can reply by the link provided, or reply directly to this email.\n\nPlease put your message directly ABOVE the quoted message.\n\nThank You.\n\n{SigID,text}";
-$Definition['ReplyByEmail.SigHtml'] = '{Tag}<br><br><b>***** reply service *****</b><br><br><p><b>You can reply by the link provided, or reply directly to this email.</p><br><p><u>Please put your message directly ABOVE the quoted message.</b></p><br><p><small>[{SigID,text}]</small></p>';
+$Definition['ReplyByEmail.SigText']  = "{Tag}\n\n\n***** reply service *****\n\nYou can reply by the link provided, or reply directly to this email.\n\nPlease put your message directly ABOVE the quoted message.\n\nPlease ensure privacy of others.\n\nThank You.\n\n{SigID,text}";
+$Definition['ReplyByEmail.SigHtml'] = '{Tag}<br><br><b>***** reply service *****</b><br><br><p><b>You can reply by the link provided, or reply directly to this email.</p><br><p><u>Please put your message directly ABOVE the quoted message.</u></p><p>Please ensure privacy of others.</p><br><p>Thank You.</b></p><br><p><small>[{SigID,text}]</small></p>';
 
 $Definition['ReplyByEmail.Msg.TxtNotSupported'] = 'Only HTML email messages are supported, please use an HTML enabled email client, to view these messages.';
 
