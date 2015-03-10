@@ -4,7 +4,7 @@
 $PluginInfo['ReplyByEmail'] = array(
    'Name' => 'ReplyByEmail',
    'Description' => 'Allows users to reply by email to discussions, wall post, and messages using the replypush.com service',
-   'Version' => '0.1.13b',
+   'Version' => '0.1.14b',
    'Author' => "Paul Thomas",
    'SettingsUrl' => 'settings/replybyemail',
    'RequiredApplications' => array('Vanilla' => '2.1'),
