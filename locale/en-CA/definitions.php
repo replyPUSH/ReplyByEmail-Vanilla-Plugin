@@ -74,6 +74,8 @@ Thank You
 [{SigID,text}]';
 
 $Definition['ReplyByEmail.IncomingError.NoEOM'] = 'Could not find /eom so can\'t send message!  Make sure to end your reply with /eom (on new line) to use this service.';
+$Definition['ReplyByEmail.IncomingError.NoMsg'] = 'We could not find a message in your reply.';
+$Definition['ReplyByEmail.IncomingError.NoMark'] = 'We could not process your reply, please reply above the quoted message.';
 
 $Definition['ReplyByEmail.HeadlineFormat.Comment'] = '<p>{Name,text} commented on &lsquo;{Title,text}&rsquo; in {Location,text}:</p>';
 $Definition['ReplyByEmail.HeadlineFormat.Mention'] = '<p>{Name,text} mentioned you on &lsquo;{Title,text}&rsquo; in {Location,text}:</p>';

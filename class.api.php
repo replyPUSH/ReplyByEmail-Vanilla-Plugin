@@ -415,6 +415,7 @@ class ReplyByEmailAPI {
     
     public function ProcessIncomingNotification(){
         $Notification = $_POST;
+        
         if(!empty($Notification)){
             //no message id no message
             if(!GetValue('msg_id',$Notification)){
@@ -498,6 +499,7 @@ class ReplyByEmailAPI {
                             $Fields = array('DiscussionID'=>$Discussion->DiscussionID,'Body'=>$this->FormatContent($Notification));
                             $CommentModel->Save($Fields);
                         }
+                        $Model = $DiscussionModel;
                         break;
                     case 'WallPost':
                         $ActivityModel = new ActivityModel();
@@ -530,6 +532,9 @@ class ReplyByEmailAPI {
                         $Model = $ConversationModel;
                         break;
                 }
+                
+                if(!$Model)
+                    $this->Denied();
                 
                 //if there was errors inserting then reply email them back 
                 if(count($Model->Validation->Results())){
