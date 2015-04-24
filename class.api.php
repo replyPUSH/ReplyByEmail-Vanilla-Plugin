@@ -396,7 +396,7 @@ class ReplyByEmailAPI {
             $SigHtml = FormatString(T('ReplyByEmail.SigHtml'),array('Tag'=>'<a href="http://replypush.com#rp-sig"></a>', 'SigID' => mt_rand()));
             
             if($Email->PhpMailer->ContentType == 'text/html'){
-                $Email->PhpMailer->Body = '<a href="http://replypush.com#rp-message"></a>'.$Email->PhpMailer->Body.$SigHtml;
+                $Email->PhpMailer->Body = '<a name="rp-message"></a><a href="http://replypush.com#rp-message"><wbr></a>'.$Email->PhpMailer->Body.$SigHtml;
                 $Email->PhpMailer->AltBody .= $Sig;
             }else{
                 $Email->PhpMailer->Body = '***** '.Gdn_Format::Text(Gdn::Request()->Host())." message *****\n\n".$Email->PhpMailer->Body.$Sig;
